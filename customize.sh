@@ -117,6 +117,9 @@ then
 	TmpConfigFile=$MODPATH/TmpSystemlessDebloater.cfg
 	sed -e '/^#/d' -e 's/#.*//g' -e 's/\"//g' -e 's/[ \t ]//g' -e '/^\s*$/d' $ConfigFile > $TmpConfigFile
 
+	# Add new line to end of temp config if it does not exist.
+	[ -n "$(tail -c1 $TmpConfigFile)" ] && echo >> $TmpConfigFile
+
 	# Read DebloatList
 	DebloatList=$'\n'
 	while read AppName
